@@ -1,0 +1,19 @@
+{
+  "commands": [ {
+      "insert": {
+        "object": {
+          "com.myspace.drl_fraud.Result": {
+            "status": "",
+            "score": 90
+          }
+        },
+        "out-identifier": "output"
+      }
+    },
+    {
+      "fire-all-rules": {
+        "max": 10
+      }
+    }
+  ]
+}
