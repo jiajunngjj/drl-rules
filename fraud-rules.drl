@@ -1,0 +1,53 @@
+package com.myspace.drl_fraud;
+import com.myspace.drl_fraud.Result;
+
+// No fraud
+rule "No Fraud"
+	dialect "mvel"
+	when
+        $status: Result (score < 50)
+	then
+        $status.setStatus("Pass");
+		System.out.println( "Status:" + $status.getStatus() );
+end
+
+// Need to check again
+rule "Check"
+	dialect "mvel"
+	when
+        $status: Result (score > 50 && score < 80)
+	then
+        $status.setStatus("Check");
+		System.out.println( "Status:" + $status.getStatus() );
+end
+
+// Failed
+rule "Fraud"
+	dialect "mvel"
+	when
+        $status: Result (score > 80)
+	then
+        $status.setStatus("Fail");
+		System.out.println( "Status:" + $status.getStatus() );
+end
+// // Need to check again
+// rule "Check Again"
+// 	dialect "mvel"
+// 	when
+// 		$i : Integer ($i > 50 && $i < 80)
+// 		$status: String()
+// 	then
+// 		$status = "Check";
+// 		System.out.println( "Status:" + $status );
+// end
+
+// // Need to check again
+// rule "Fraud"
+// 	dialect "mvel"
+// 	when
+// 		$i : Integer ($i > 80)
+// 		$status: String()
+// 	then
+// 		$status = "Fail";
+// 		System.out.println( "Status:" + $status );
+// end
